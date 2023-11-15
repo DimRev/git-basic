@@ -145,3 +145,24 @@ function currentState() {
   }
   gStates.push(state)
 }
+function undo() {
+  const elBall1 = document.querySelector('.ball-1')
+  const elBall2 = document.querySelector('.ball-2')
+  const elBody = document.querySelector('body')
+
+  const currState = gStates.pop()
+
+  if (currState === undefined) return
+
+  elBall1.style.backgroundColor = currState.ball1Color
+  elBall1.style.width = currState.ball1Diameter + 'px'
+  elBall1.style.height = currState.ball1Diameter + 'px'
+  elBall1.innerText = currState.ball1Diameter
+
+  elBall2.style.backgroundColor = currState.ball2Color
+  elBall2.style.width = currState.ball2Diameter + 'px'
+  elBall2.style.height = currState.ball2Diameter + 'px'
+  elBall2.innerText = currState.ball2Diameter
+
+  elBody.style.backgroundColor = currState.backgroundColor
+}
