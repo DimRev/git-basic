@@ -5,3 +5,14 @@ body {
 h1 {
   color: aliceblue;
 }
+
+.ball {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100px;
+  height: 100px;
+  background-color: green;
+  border-radius: 50%;
+}
