@@ -1,7 +1,9 @@
 function onBallClick(elBall) {
   var currSize = parseInt(elBall.offsetWidth, 10)
   var rdmIncrement = getRandomIntegerInc(20, 60)
-  console.log(currSize)
+  
+  elBall.style.backgroundColor = getRandomColor()
+  
   if (currSize > 400) {
     elBall.style.width = 100 + 'px'
     elBall.style.height = 100 + 'px'
