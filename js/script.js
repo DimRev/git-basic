@@ -152,7 +152,20 @@ function undo() {
 
   const currState = gStates.pop()
 
-  if (currState === undefined) return
+  if (gStates.length === 0) {
+    elBall1.style.backgroundColor = 'green'
+    elBall1.style.width = 100 + 'px'
+    elBall1.style.height = 100 + 'px'
+    elBall1.innerText = 100
+
+    elBall2.style.backgroundColor = 'pink'
+    elBall2.style.width = 100 + 'px'
+    elBall2.style.height = 100 + 'px'
+    elBall2.innerText = 100
+
+    elBody.style.backgroundColor = 'black'
+    return
+  }
 
   elBall1.style.backgroundColor = currState.ball1Color
   elBall1.style.width = currState.ball1Diameter + 'px'
