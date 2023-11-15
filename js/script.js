@@ -1,5 +1,4 @@
-function onBallClick() {
-  const elBall = document.querySelector('.ball')
+function onBallClick(elBall) {
   var currSize = parseInt(elBall.offsetWidth, 10)
   var rdmIncrement = getRandomIntegerInc(20, 60)
   console.log(currSize)
