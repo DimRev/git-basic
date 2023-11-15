@@ -28,3 +28,19 @@ h1 {
 
   transition: 1s;
 }
+
+.ball-2 {
+  background-color: pink;
+}
+.ball-3 {
+  background-color: blue;
+}
+.ball-4 {
+  background-color: red;
+}
+.ball-5 {
+  background-color: yellow;
+}
+.ball-6 {
+  background-color: orange;
+}
