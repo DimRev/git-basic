@@ -8,12 +8,17 @@ h1 {
 
 .ball {
   margin: auto;
+  
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
+  
   width: 100px;
   height: 100px;
+  
+  font-size: 22px;
+  font-weight: 600;
+
   background-color: green;
   border-radius: 50%;
 }
