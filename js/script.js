@@ -61,3 +61,23 @@ function onReduceBalls(minDiameter = 100) {
     elBall2.innerText = currSize2 - rdmIncrement
   }
 }
+
+function handleBallGrowth(elBall, currSize, Increment, mode) {
+  switch (mode) {
+    case 'grow':
+      elBall.style.width = currSize + Increment + 'px'
+      elBall.style.height = currSize + Increment + 'px'
+      elBall.innerText = currSize + Increment
+      break
+    case 'shrink':
+      elBall.style.width = currSize - Increment + 'px'
+      elBall.style.height = currSize - Increment + 'px'
+      elBall.innerText = currSize - Increment
+      break
+    case 'exact':
+      elBall.style.width = Increment + 'px'
+      elBall.style.height = Increment + 'px'
+      elBall.innerText = Increment
+      break
+  }
+}
