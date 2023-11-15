@@ -1,3 +1,5 @@
+var gInitBodyHtml
+
 function onBallClick(elBall, maxDiameter) {
   var currSize = parseInt(elBall.offsetWidth, 10)
   var rdmIncrement = getRandomIntegerInc(20, 60)
@@ -70,4 +72,13 @@ function handleBallGrowth(elBall, currSize, Increment, mode) {
 function onBGCchange() {
   const elBody = document.querySelector('body')
   elBody.style.backgroundColor = getRandomColor()
+}
+
+function onResetClick(state) {
+  if(state === 'init') {
+    gInitBodyHtml = document.querySelector('body').innerHTML
+    return
+  }
+  const elBody = document.querySelector('body') 
+  elBody.innerHTML = gInitBodyHtml
 }
