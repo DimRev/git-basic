@@ -7,6 +7,7 @@ h1 {
 }
 
 .ball {
+  margin: auto;
   display: flex;
   justify-content: center;
   align-items: center;
