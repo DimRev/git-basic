@@ -1,6 +1,7 @@
 var gHoverTimers = [0, 0, 0, 0]
 var gInterval = 0
 var gTurn = 0
+const gStates = []
 
 function onBallClick(elBall, maxDiameter) {
   var currSize = parseInt(elBall.offsetWidth, 10)
@@ -11,10 +12,12 @@ function onBallClick(elBall, maxDiameter) {
   if (currSize + rdmIncrement > maxDiameter) {
     handleBallGrowth(elBall, currSize, 100, 'exact')
 
+    currentState()
     return
   }
 
   handleBallGrowth(elBall, currSize, rdmIncrement, 'grow')
+  currentState()
 }
 
 function onSwapBalls() {
@@ -30,6 +33,7 @@ function onSwapBalls() {
 
   handleBallGrowth(elBall2, 0, ball1Size, 'exact')
   elBall2.style.backgroundColor = tempColor
+  currentState()
 }
 
 function onReduceBalls(minDiameter = 100) {
@@ -49,6 +53,7 @@ function onReduceBalls(minDiameter = 100) {
     handleBallGrowth(elBall2, currSize2, rdmIncrement, 'shrink')
     elBall2.style.backgroundColor = getRandomColor()
   }
+  currentState()
 }
 
 function handleBallGrowth(elBall, currSize, Increment, mode) {
@@ -74,6 +79,7 @@ function handleBallGrowth(elBall, currSize, Increment, mode) {
 function onBGCchange() {
   const elBody = document.querySelector('body')
   elBody.style.backgroundColor = getRandomColor()
+  currentState()
 }
 
 function onResetClick(state) {
@@ -125,4 +131,17 @@ function intervalCycle() {
   gHoverTimers[3] = setTimeout(() => {
     onReduceBalls()
   }, 6000)
+}
+function currentState() {
+  const elBall1 = document.querySelector('.ball-1')
+  const elBall2 = document.querySelector('.ball-2')
+  const elBody = document.querySelector('body')
+  const state = {
+    ball1Color: elBall1.style.backgroundColor,
+    ball1Diameter: elBall1.offsetWidth,
+    ball2Color: elBall2.style.backgroundColor,
+    ball2Diameter: elBall2.offsetWidth,
+    backgroundColor: elBody.style.backgroundColor,
+  }
+  gStates.push(state)
 }
