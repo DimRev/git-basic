@@ -66,3 +66,8 @@ function handleBallGrowth(elBall, currSize, Increment, mode) {
       break
   }
 }
+
+function onBGCchange() {
+  const elBody = document.querySelector('body')
+  elBody.style.backgroundColor = getRandomColor()
+}
