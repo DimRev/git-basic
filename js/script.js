@@ -19,9 +19,11 @@ function onBallClick(elBall, maxDiameter) {
 function onSwapBalls() {
   const elBall1 = document.querySelector('.ball-1')
   const elBall2 = document.querySelector('.ball-2')
+
   var tempSize
   var tempColor
   var tempInnerText
+  
   tempSize = parseInt(elBall1.offsetWidth, 10)
   tempColor = elBall1.style.backgroundColor
   tempInnerText = elBall1.innerText
