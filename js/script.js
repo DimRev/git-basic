@@ -1,7 +1,6 @@
-var gInitBodyHtml
 var gHoverTimers = [0, 0, 0, 0]
 var gInterval = 0
-var gCount = 0
+var gTurn = 0
 
 function onBallClick(elBall, maxDiameter) {
   var currSize = parseInt(elBall.offsetWidth, 10)
@@ -79,11 +78,21 @@ function onBGCchange() {
 
 function onResetClick(state) {
   if (state === 'init') {
-    gInitBodyHtml = document.querySelector('body').innerHTML
+    const InitBodyHtml = document.querySelector('body').innerHTML
+    const address = 'turn' + gTurn
+
+    localStorage.clear()
+    localStorage.setItem(address, InitBodyHtml)
+    gTurn++
     return
   }
   const elBody = document.querySelector('body')
-  elBody.innerHTML = gInitBodyHtml
+  const InitBodyHtml = localStorage.getItem('turn0')
+
+  elBody.innerHTML = InitBodyHtml
+  gTurn = 0
+  onResetClick('init')
+  onResetHover('leave')
 }
 
 function onResetHover(mode) {
