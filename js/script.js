@@ -5,38 +5,27 @@ function onBallClick(elBall, maxDiameter) {
   elBall.style.backgroundColor = getRandomColor()
 
   if (currSize + rdmIncrement > maxDiameter) {
-    elBall.style.width = 100 + 'px'
-    elBall.style.height = 100 + 'px'
-    elBall.innerText = 100
+    handleBallGrowth(elBall, currSize, 100, 'exact')
+
     return
   }
 
-  elBall.style.width = currSize + rdmIncrement + 'px'
-  elBall.style.height = currSize + rdmIncrement + 'px'
-  elBall.innerText = currSize + rdmIncrement
+  handleBallGrowth(elBall, currSize, rdmIncrement, 'grow')
 }
 
 function onSwapBalls() {
   const elBall1 = document.querySelector('.ball-1')
   const elBall2 = document.querySelector('.ball-2')
 
-  var tempSize
-  var tempColor
-  var tempInnerText
+  var tempColor = elBall1.style.backgroundColor
+  var ball1Size = parseInt(elBall1.offsetWidth, 10)
+  var ball2Size = parseInt(elBall2.offsetWidth, 10)
 
-  tempSize = parseInt(elBall1.offsetWidth, 10)
-  tempColor = elBall1.style.backgroundColor
-  tempInnerText = elBall1.innerText
-
-  elBall1.style.width = parseInt(elBall2.offsetWidth, 10) + 'px'
-  elBall1.style.height = parseInt(elBall2.offsetHeight, 10) + 'px'
+  handleBallGrowth(elBall1, 0, ball2Size, 'exact')
   elBall1.style.backgroundColor = elBall2.style.backgroundColor
-  elBall1.innerText = elBall2.innerText
 
-  elBall2.style.width = tempSize + 'px'
-  elBall2.style.height = tempSize + 'px'
+  handleBallGrowth(elBall2, 0, ball1Size, 'exact')
   elBall2.style.backgroundColor = tempColor
-  elBall2.innerText = tempInnerText
 }
 
 function onReduceBalls(minDiameter = 100) {
@@ -49,16 +38,12 @@ function onReduceBalls(minDiameter = 100) {
   var rdmIncrement = getRandomIntegerInc(20, 60)
 
   if (currSize1 - rdmIncrement > 100) {
-    elBall1.style.width = currSize1 - rdmIncrement + 'px'
-    elBall1.style.height = currSize1 - rdmIncrement + 'px'
+    handleBallGrowth(elBall1, currSize1, rdmIncrement, 'shrink')
     elBall1.style.backgroundColor = getRandomColor()
-    elBall1.innerText = currSize1 - rdmIncrement
   }
   if (currSize2 - rdmIncrement > 100) {
-    elBall2.style.width = currSize2 - rdmIncrement + 'px'
-    elBall2.style.height = currSize2 - rdmIncrement + 'px'
+    handleBallGrowth(elBall2, currSize2, rdmIncrement, 'shrink')
     elBall2.style.backgroundColor = getRandomColor()
-    elBall2.innerText = currSize2 - rdmIncrement
   }
 }
 
