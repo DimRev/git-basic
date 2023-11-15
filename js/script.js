@@ -11,4 +11,5 @@ function onBallClick() {
 
   elBall.style.width = currSize + rdmIncrement + 'px'
   elBall.style.height = currSize + rdmIncrement + 'px'
+  elBall.innerText = currSize + rdmIncrement
 }
