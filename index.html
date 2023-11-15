@@ -6,13 +6,14 @@
   <title>Document</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body onload="onResetClick('init')">
   <h1>heading - The Ball Game.</h1>
   <div class="ball ball-1" onclick="onBallClick(this, 400)">100</div>
   <div class="ball ball-2" onclick="onBallClick(this, 300)">100</div>
   <div class="ball ball-3" onclick="onSwapBalls()">swap</div>
   <div class="ball ball-4" onclick="onReduceBalls()">reduce</div>
   <div class="ball ball-5" onclick="onBGCchange()">bgc</div>
+  <div class="ball ball-6" onclick="onResetClick('')">reset</div>
   <script src="js/script.js"></script>
   <script src="js/util.js"></script>
 </body>
