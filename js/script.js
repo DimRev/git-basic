@@ -1,4 +1,7 @@
 var gInitBodyHtml
+var gHoverTimer = 0
+var gInterval = 0
+var gCount = 0
 
 function onBallClick(elBall, maxDiameter) {
   var currSize = parseInt(elBall.offsetWidth, 10)
@@ -39,11 +42,11 @@ function onReduceBalls(minDiameter = 100) {
 
   var rdmIncrement = getRandomIntegerInc(20, 60)
 
-  if (currSize1 - rdmIncrement > 100) {
+  if (currSize1 - rdmIncrement > minDiameter) {
     handleBallGrowth(elBall1, currSize1, rdmIncrement, 'shrink')
     elBall1.style.backgroundColor = getRandomColor()
   }
-  if (currSize2 - rdmIncrement > 100) {
+  if (currSize2 - rdmIncrement > minDiameter) {
     handleBallGrowth(elBall2, currSize2, rdmIncrement, 'shrink')
     elBall2.style.backgroundColor = getRandomColor()
   }
@@ -75,10 +78,40 @@ function onBGCchange() {
 }
 
 function onResetClick(state) {
-  if(state === 'init') {
+  if (state === 'init') {
     gInitBodyHtml = document.querySelector('body').innerHTML
     return
   }
-  const elBody = document.querySelector('body') 
+  const elBody = document.querySelector('body')
   elBody.innerHTML = gInitBodyHtml
+}
+
+function onResetHover(mode) {
+  if (mode === 'enter') {
+    gHoverTimer = setTimeout(() => {
+      intervalCycle()
+      gInterval = setInterval(() => {
+        intervalCycle()
+      }, 8000)
+    }, 2000)
+  }
+  if (mode === 'leave') {
+    clearTimeout(gHoverTimer)
+    clearInterval(gInterval)
+  }
+}
+
+function intervalCycle() {
+  const elBall1 = document.querySelector('.ball-1')
+  onBallClick(elBall1, 400)
+  setTimeout(() => {
+    const elBall2 = document.querySelector('.ball-2')
+    onBallClick(elBall2, 300)
+  }, 2000)
+  setTimeout(() => {
+    onSwapBalls()
+  }, 4000)
+  setTimeout(() => {
+    onReduceBalls()
+  }, 6000)
 }
