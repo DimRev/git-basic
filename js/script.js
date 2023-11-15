@@ -1,5 +1,5 @@
 var gInitBodyHtml
-var gHoverTimer = 0
+var gHoverTimers = [0, 0, 0, 0]
 var gInterval = 0
 var gCount = 0
 
@@ -88,7 +88,7 @@ function onResetClick(state) {
 
 function onResetHover(mode) {
   if (mode === 'enter') {
-    gHoverTimer = setTimeout(() => {
+    gHoverTimers[0] = setTimeout(() => {
       intervalCycle()
       gInterval = setInterval(() => {
         intervalCycle()
@@ -96,7 +96,9 @@ function onResetHover(mode) {
     }, 2000)
   }
   if (mode === 'leave') {
-    clearTimeout(gHoverTimer)
+    gHoverTimers.forEach((gHoverTimer) => {
+      clearTimeout(gHoverTimer)
+    })
     clearInterval(gInterval)
   }
 }
@@ -104,14 +106,14 @@ function onResetHover(mode) {
 function intervalCycle() {
   const elBall1 = document.querySelector('.ball-1')
   onBallClick(elBall1, 400)
-  setTimeout(() => {
+  gHoverTimers[1] = setTimeout(() => {
     const elBall2 = document.querySelector('.ball-2')
     onBallClick(elBall2, 300)
   }, 2000)
-  setTimeout(() => {
+  gHoverTimers[2] = setTimeout(() => {
     onSwapBalls()
   }, 4000)
-  setTimeout(() => {
+  gHoverTimers[3] = setTimeout(() => {
     onReduceBalls()
   }, 6000)
 }
